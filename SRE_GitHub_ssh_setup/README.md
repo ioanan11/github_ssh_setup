@@ -23,11 +23,11 @@ Then, when creating a new repo use SSH instead of HTTP.
 ![alt text](https://github.com/ioanan11/github_ssh_setup/blob/main/SRE_GitHub_ssh_setup/Screenshot%202021-09-09%20092509.png)
 
 
-1. We need a Public/Private Key pair
+## 1. We need a Public/Private Key pair
 
 Follow the steps above
 
-2. We need a Webhook on GitHub
+## 2. We need a Webhook on GitHub
 
 - on the repo on GitHub select Settings
 
@@ -42,13 +42,13 @@ Follow the steps above
 -Select: Just the push event
 
 
-3. Create Jenkins Jobs
+## 3. Create Jenkins Jobs
 
 -we need 3 jobs: one for continuous integration, one for merging and one for deployment.
 
 
 
-## How to create a Jenkins job
+### How to create a Jenkins job
 
 Select "New Item" on Jenkins Dashboard
 
@@ -82,11 +82,11 @@ Source Code Management
 
 -Repositories:
 
-	-Repository URL: insert SSH URL from GitHub repo
+Repository URL: insert SSH URL from GitHub repo
 
-	-Credentials: Add Jenkins and select SSH Username with private key as Kind. Then set a description and enter key manually from gitbash (Make sure you copy paste the beggining and end of the key!)
+Credentials: Add Jenkins and select SSH Username with private key as Kind. Then set a description and enter key manually from gitbash (Make sure you copy paste the beggining and end of the key!)
 
-	-Branches to build: */dev
+Branches to build: */dev
 
 
 Build Triggers
@@ -141,11 +141,11 @@ Source Code Management
 
 -Repositories:
 
-        -Repository URL: insert SSH URL from GitHub repo
+Repository URL: insert SSH URL from GitHub repo
 
-        -Credentials: Add Jenkins and select SSH Username with private key as K>
+Credentials: Add Jenkins and select SSH Username with private key as K>
 
-        -Branches to build: */dev
+Branches to build: */dev
 
 
 Build Environment
@@ -199,11 +199,11 @@ Source Code Management
 
 -Repositories:
 
-        -Repository URL: insert SSH URL from GitHub repo
+Repository URL: insert SSH URL from GitHub repo
 
-        -Credentials: Add Jenkins and select SSH Username with private key as K>
+Credentials: Add Jenkins and select SSH Username with private key as K>
 
-        -Branches to build: */dev
+Branches to build: */dev
 
 
 Build Environment
@@ -220,3 +220,25 @@ Build
 -Add build step -> Execute Shell
 
 	code to be written here
+
+## 4. AWS EC2 Instance
+
+Copy EC2 Instance from previously created AMIs (app EC2)
+
+Connect the instance to your VPC and public subnet
+
+Make sure the settings in the selected Security Group are:
+-SSH (22), my IP
+-SSH (22), Jenkins IP/32
+-HTTP(80), 0.0.0.0/0
+-Custom TCP (3000), 0.0.0.0/0
+
+Key pair SSH option
+
+Make sure NACL is configured to allow SSH(22) with Jenkins IP/32
+
+Note: Jenkins IP modifies whenever the server is rebooted
+
+## 5. Triggering everything to automate
+
+On dev branch we can make any change which when pushed to dev will trigger CI job. Then, if tests are successful, the merge job will be triggered and will merge dev to main on GitHub. Then, finally, app will be running on public ip on port 3000. 
