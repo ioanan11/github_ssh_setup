@@ -219,7 +219,29 @@ Build
 
 -Add build step -> Execute Shell
 
-	code to be written here
+	ssh -A -o "StrictHostKeyChecking=no" ubuntu@ec2-<IP>.eu-west-1.compute.amazonaws.com << EOF	
+
+	rm -rf CICD_Jenkins
+
+	git clone https://github.com/andujiuba/CICD_Jenkins.git
+
+	cd CICD_Jenkins
+
+	export DB_HOST=mongodb://52.215.204.66:27017/posts
+	# navigate to app folder
+
+	cd app
+	npm install
+	node seeds/seed.js
+
+	#pm2 kill
+	#pm2 start app.js
+
+	nohup node app.js > /dev/null 2>&1 &
+
+# To debug ssh into your ec2 and run the above commands
+
+EOF
 
 ## 4. AWS EC2 Instance
 
