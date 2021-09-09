@@ -1,4 +1,4 @@
-**How to do SSH setup between LocalHost and GitHub**
+#How to do SSH setup between LocalHost and GitHub
 
 ![alt text](https://github.com/ioanan11/github_ssh_setup/blob/main/SRE_GitHub_ssh_setup/Screenshot%202021-09-08%20101922.png)
 
@@ -18,7 +18,7 @@ And paste the key you get into git hub when you create an SSH key. You can creat
 
 Then, when creating a new repo use SSH instead of HTTP.
 
-**CI-CD with Jenkins Task**
+##CI-CD with Jenkins Task
 
 ![alt text](https://github.com/ioanan11/github_ssh_setup/blob/main/SRE_GitHub_ssh_setup/Screenshot%202021-09-09%20092509.png)
 
