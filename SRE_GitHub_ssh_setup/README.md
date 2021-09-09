@@ -20,7 +20,7 @@ Then, when creating a new repo use SSH instead of HTTP.
 
 **CI-CD with Jenkins Task**
 
-![alt text]()
+![alt text](https://github.com/ioanan11/github_ssh_setup/blob/main/SRE_GitHub_ssh_setup/Screenshot%202021-09-09%20092509.png)
 
 1. We need a Public/Private Key pair
 
@@ -45,7 +45,9 @@ Follow the steps above
 
 -we need 3 jobs: one for continuous integration, one for merging and one for deployment.
 
-	**How to create a Jenkins job**
+
+
+**How to create a Jenkins job**
 
 Select "New Item" on Jenkins Dashboard
 
